@@ -1,0 +1,12 @@
+@charset "UTF-8";
+@import "index";
+
+.detail {
+  text-align : center;
+
+  > img {
+    max-width : 30%;
+    display : block;
+    margin : auto;
+  }
+}
