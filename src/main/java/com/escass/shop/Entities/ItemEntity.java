@@ -21,4 +21,7 @@ public class ItemEntity {
 
     @Column(nullable = false)
     private Integer price;
+
+    @Column(nullable = false)
+    private String username;
 }

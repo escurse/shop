@@ -13,7 +13,7 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
-    public void saveItem(String title, Integer price) {
+    public void saveItem(String title, Integer price, String username) {
         if (title == null || price == null) {
             throw new RuntimeException("둘 다 넣으세요");
         }
@@ -29,6 +29,7 @@ public class ItemService {
         ItemEntity item = new ItemEntity();
         item.setTitle(title);
         item.setPrice(price);
+        item.setUsername(username);
         itemRepository.save(item);
     }
 
@@ -56,5 +57,9 @@ public class ItemService {
             itemEntity.setPrice(price);
             itemRepository.save(itemEntity);
         }
+    }
+
+    public void deleteItemById(Long id) {
+        itemRepository.deleteById(id);
     }
 }

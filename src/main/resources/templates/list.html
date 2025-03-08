@@ -16,7 +16,32 @@
         <a th:href="@{'/detail/' + ${item.id}}" th:text="${item.getTitle()}"></a>
         <p th:text="${item.getPrice()} + 원"></p>
         <a th:href="@{'/update/' + ${item.getId()}}">✏️</a>
+        <span class="delete" th:data="${item.getId()}">🗑️</span>
     </div>
 </div>
+
+<!--<button class="btn">버튼</button>-->
+
+<script>
+    const deleteId = document.querySelectorAll('.delete');
+    deleteId.forEach((btn) => {
+        btn.onclick = (e) => {
+            e.preventDefault();
+            fetch('/delete', {
+                method : 'DELETE',
+                headers : {'Content-Type': "application/json"},
+                body : JSON.stringify(btn.getAttribute("data"))
+            }).then(response => {
+                if (response.status === 200) {
+                    window.location.reload();
+                    alert('삭제 성공');
+                }
+            })
+        }
+    })
+    // document.querySelectorAll('.btn')[0].addEventListener('click', function (){
+    //     fetch('/test1?name=kim&age=20')
+    // })
+</script>
 </body>
 </html>
