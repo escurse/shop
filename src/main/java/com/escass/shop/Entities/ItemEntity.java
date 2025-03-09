@@ -11,6 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @EqualsAndHashCode(of = {"id"})
+@Table(indexes = @Index(columnList = "title", name = "제목"))
 public class ItemEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

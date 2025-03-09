@@ -1,10 +1,13 @@
 package com.escass.shop.Services;
 
+import com.escass.shop.Entities.CommentEntity;
 import com.escass.shop.Entities.ItemEntity;
+import com.escass.shop.Repositories.CommentRepository;
 import com.escass.shop.Repositories.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -12,6 +15,7 @@ import java.util.Optional;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final CommentRepository commentRepository;
 
     public void saveItem(String title, Integer price, String username) {
         if (title == null || price == null) {
@@ -61,5 +65,17 @@ public class ItemService {
 
     public void deleteItemById(Long id) {
         itemRepository.deleteById(id);
+    }
+
+    public void writeComment(String username, String content, Integer id) {
+        CommentEntity comment = new CommentEntity();
+        comment.setUsername(username);
+        comment.setContent(content);
+        comment.setParentId(Long.valueOf(id));
+        commentRepository.save(comment);
+    }
+
+    public List<CommentEntity> findAllCommentByParentId(Long id) {
+        return commentRepository.findAllByParentId(id);
     }
 }

@@ -33,6 +33,11 @@ input {
   display: block;
 }
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
 .detail {
   text-align: center;
 }

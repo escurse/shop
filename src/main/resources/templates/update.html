@@ -11,6 +11,9 @@
 <body>
 <div th:replace="~{fragments/nav.html :: navbar}"></div>
 <form th:action="'/replace/' + ${item.getId()}" method="post">
+    <input type="hidden"
+           th:name="${_csrf.parameterName}"
+           th:value="${_csrf.token}">
     <input name="title" th:value="${item.getTitle()}">
     <input name="price" th:value="${item.getPrice()}">
     <input type="hidden" name="id" th:value="${item.getId()}">

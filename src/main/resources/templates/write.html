@@ -11,9 +11,13 @@
 <body>
 <div th:replace="~{fragments/nav.html :: navbar}"></div>
 <form action="/add" method="post">
+    <input type="hidden"
+           th:name="${_csrf.parameterName}"
+           th:value="${_csrf.token}">
     <input name="title">
     <input name="price">
     <input sec:authorize="isAuthenticated()" type="hidden" name="username" th:value="${#authentication.principal.username}">
+    <input sec:authorize="isAnonymous()" name="username" th:value="'비회원'" type="hidden">
     <button type="submit">전송</button>
 </form>
 </body>

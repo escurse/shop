@@ -33,4 +33,9 @@ input {
   display: block;
 }
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=login.css.map */

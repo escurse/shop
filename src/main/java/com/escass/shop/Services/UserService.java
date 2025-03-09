@@ -1,5 +1,6 @@
 package com.escass.shop.Services;
 
+import com.escass.shop.DTO.CustomUser;
 import com.escass.shop.Entities.UserEntity;
 import com.escass.shop.Repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,8 +58,10 @@ public class UserService implements UserDetailsService {
             var user = userEntity.get();
             List<GrantedAuthority> grant = new ArrayList<>();
             grant.add(new SimpleGrantedAuthority("일반유저"));
-            return new User(user.getUsername(), user.getPassword(), grant);
+            return new CustomUser(user.getUsername(), user.getPassword(), grant, user.getDisplayName());
         }
         return null;
     }
 }
+
+
